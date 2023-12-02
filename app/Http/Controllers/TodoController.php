@@ -10,11 +10,12 @@ class TodoController extends Controller
 {
 
     public function index()
-    {
-        // Show all resources
-        $todos = Todo::all();
-        return view('todos.index', compact('todos'));
-    }
+{
+    $todos = Todo::all();
+    
+    return view('todos.index', compact('todos'));
+}
+
 
 
     public function create()
@@ -44,11 +45,12 @@ class TodoController extends Controller
 
     public function edit(Todo $todo)
     {
-        return view('edit', compact('todo'));
+        return view('todos.edit', compact('todo'));
     }
 
 
-    public function update($request, Todo $todo)
+    public function update(Request $request, Todo $todo)
+
     {
         $todo->update([
             'title' => $request->title,
