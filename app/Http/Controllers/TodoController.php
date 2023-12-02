@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostRequest;
+use Illuminate\Http\Request;
 use App\Models\Todo;
 
 
@@ -11,7 +11,8 @@ class TodoController extends Controller
 
     public function index()
     {
-        $todos = Todo::latest()->paginate(10);
+        // Show all resources
+        $todos = Todo::all();
         return view('todos.index', compact('todos'));
     }
 
@@ -22,12 +23,18 @@ class TodoController extends Controller
     }
 
 
-    public function store(PostRequest $request)
+    public function store(Request $request)
     {
-        Todo::create($request->validated());
-        return redirect()->route('todos.index')->with('message', 'Post Created Successfully');
-    }
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            // Add validation rules for other fields
+        ]);
 
+        Todo::create($request->all());
+
+        return redirect()->route('todos.index')->with('success', 'Record created successfully.');
+    }
 
     public function show(Todo $todo)
     {
@@ -37,11 +44,11 @@ class TodoController extends Controller
 
     public function edit(Todo $todo)
     {
-        return view('todos.edit', compact('todo'));
+        return view('edit', compact('todo'));
     }
 
 
-    public function update(PostRequest $request, Todo $todo)
+    public function update($request, Todo $todo)
     {
         $todo->update([
             'title' => $request->title,
