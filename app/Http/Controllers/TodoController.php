@@ -6,7 +6,7 @@ use App\Http\Requests\PostRequest;
 use App\Models\Todo;
 
 
-class PostController extends Controller
+class TodoController extends Controller
 {
 
     public function index()
