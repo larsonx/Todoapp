@@ -12,14 +12,14 @@ class TodoController extends Controller
 {
     $todos = Todo::all();
     
-    return view('todos.index', compact('todos'));
+    return view('dashboard', compact('todos'));
 }
 
 
 
     public function create()
     {
-        return view('todos.create');
+        return view('dashboard');
     }
 
 
@@ -33,18 +33,18 @@ class TodoController extends Controller
 
         Todo::create($request->all());
 
-        return redirect()->route('todos.index')->with('success', 'Record created successfully.');
+        return redirect()->route('dashboard')->with('success', 'Record created successfully.');
     }
 
     public function show(Todo $todo)
     {
-        return view('todos.show', compact('todo'));
+        return view('dashboard', compact('todo'));
     }
 
 
     public function edit(Todo $todo)
     {
-        return view('todos.edit', compact('todo'));
+        return view('dashboard', compact('todo'));
     }
 
 
@@ -56,13 +56,13 @@ class TodoController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('todos.index')->with('message', 'Todo Updated Successfully');
+        return redirect()->route('dashboard.index')->with('message', 'Todo Updated Successfully');
     }
 
 
     public function destroy(Todo $todo)
     {
         $todo->delete();
-        return redirect()->route('todos.index')->with('message', 'Todo Deleted Successfully');
+        return redirect()->route('dashboard.index')->with('message', 'Todo Deleted Successfully');
     }
 }
