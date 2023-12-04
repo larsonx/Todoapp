@@ -43,26 +43,32 @@ class TodoController extends Controller
 
 
     public function edit(Todo $todo)
-    {
-        return view('dashboard', compact('todo'));
-    }
+{
+    $todos = Todo::all();
+    return view('/dashboard', compact('todo', 'todos'));
+}   
+    
 
 
     public function update(Request $request, Todo $todo)
-
     {
         $todo->update([
             'title' => $request->title,
             'description' => $request->description
         ]);
-
-        return redirect()->route('dashboard.index')->with('message', 'Todo Updated Successfully');
+    
+        // Update the todos collection in the view
+        $todos = Todo::all();
+    
+        return redirect()->route('dashboard.index')->with('message', 'Todo Updated Successfully')->with('todos', $todos);
     }
+    
+
 
 
     public function destroy(Todo $todo)
     {
         $todo->delete();
-        return redirect()->route('dashboard.index')->with('message', 'Todo Deleted Successfully');
+        return redirect()->route('dashboard')->with('message', 'Todo Deleted Successfully');
     }
 }

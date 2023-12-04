@@ -13,7 +13,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/create', [TodoController::class, 'create'])->name('dashboard.create');
     Route::post('/dashboard', [TodoController::class, 'store'])->name('dashboard.store');
     Route::get('/dashboard/{todo}', [TodoController::class, 'show'])->name('dashboard.show');
-    Route::get('/dashboard/{todo}/edit', [TodoController::class, 'edit'])->name('dashboard.edit');
+    Route::get('/dashboard.edit/{todo}/edit', [TodoController::class, 'edit'])->name('dashboard.edit');
     Route::delete('/dashboard/{todo}', [TodoController::class, 'destroy'])->name('dashboard.destroy');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -21,4 +21,4 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';    
