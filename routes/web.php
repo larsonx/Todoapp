@@ -12,7 +12,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [TodoController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/create', [TodoController::class, 'create'])->name('dashboard.create');
     Route::post('/dashboard', [TodoController::class, 'store'])->name('dashboard.store');
-    Route::get('/todos/show/{todo}', [TodoController::class, 'show'])->name('dashboard.show');
+    Route::get('/todos. show/{todo}', [TodoController::class, 'show'])->name('dashboard.show');
     Route::get('/dashboard.edit/{todo}/edit', [TodoController::class, 'edit'])->name('dashboard.edit');
     Route::delete('/dashboard/{todo}', [TodoController::class, 'destroy'])->name('dashboard.destroy');
 
