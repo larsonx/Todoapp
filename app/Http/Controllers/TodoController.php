@@ -45,7 +45,7 @@ class TodoController extends Controller
     public function edit(Todo $todo)
 {
     $todos = Todo::all();
-    return view('/dashboard', compact('todo', 'todos'));
+    return view('test', compact('todo', 'todos'));
 }   
     
 
