@@ -23,9 +23,7 @@
                 <ul>
                     @forelse($todos as $todo)
                         <li class="mb-2">
-                            <span style="pointer-events: none;">
-                                <a href="{{ route('dashboard.show', $todo->id) }}" class="text-blue-500">{{ $todo->title }}</a>
-                            </span>
+                            <a href="{{ route('dashboard.show', $todo->id) }}" class="text-blue-500">{{ $todo->title }}</a>
                             <a href="{{ route('dashboard.edit', $todo->id) }}" class="text-yellow-500 ml-2">Edit</a>
                             <form method="POST" action="{{ route('dashboard.destroy', $todo->id) }}" style="display:inline">
                                 @csrf
