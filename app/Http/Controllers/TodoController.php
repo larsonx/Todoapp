@@ -44,24 +44,27 @@ class TodoController extends Controller
 
     public function edit(Todo $todo)
 {
-    $todos = Todo::all();
-    return view('test', compact('todo', 'todos'));
-}   
+    return view('edit', compact('todo'));
+}
     
 
 
-    public function update(Request $request, Todo $todo)
-    {
-        $todo->update([
-            'title' => $request->title,
-            'description' => $request->description
-        ]);
-    
-        // Update the todos collection in the view
-        $todos = Todo::all();
-    
-        return redirect()->route('dashboard.index')->with('message', 'Todo Updated Successfully')->with('todos', $todos);
-    }
+public function update(Request $request, Todo $todo)
+{
+    $request->validate([
+        'title' => 'required',
+        'description' => 'required',
+        // Add validation rules for other fields
+    ]);
+
+    $todo->update([
+        'title' => $request->title,
+        'description' => $request->description
+        // Update other fields as needed
+    ]);
+
+    return redirect()->route('dashboard')->with('message', 'Todo Updated Successfully');
+}
     
 
 
