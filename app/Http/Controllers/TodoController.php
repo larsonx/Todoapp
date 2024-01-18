@@ -38,9 +38,9 @@ class TodoController extends Controller
 
     public function show(Todo $todo)
     {
-        return view('dashboard', compact('todo'));
+        return view('information', compact('todo'));
     }
-
+   
 
     public function edit(Todo $todo)
 {
@@ -69,9 +69,15 @@ public function update(Request $request, Todo $todo)
 
 
 
+
+
+
+
+
     public function destroy(Todo $todo)
     {
         $todo->delete();
         return redirect()->route('dashboard')->with('message', 'Todo Deleted Successfully');
     }
 }
+
