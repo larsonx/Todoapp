@@ -17,6 +17,7 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/dashboard/{todo}', [TodoController::class, 'update'])->name('dashboard.update');
     Route::get('/dashboard.show/{todo}', [TodoController::class, 'show'])->name('dashboard.show');
     Route::delete('/dashboard/{todo}', [TodoController::class, 'destroy'])->name('dashboard.destroy');
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
